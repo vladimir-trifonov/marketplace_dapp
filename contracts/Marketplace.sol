@@ -3,11 +3,7 @@ pragma solidity ^0.4.18;
 
 contract Marketplace {
     enum Status { Unsold, Sold }
-
-    struct Seller { 
-        string contact;
-        address addr;
-    }
+    enum ProductCondition { New, Used }
 
     uint public productIndex;
     mapping (address => mapping(uint => Product)) private stores;
@@ -23,6 +19,7 @@ contract Marketplace {
         Status status;
         address sellerAddr;
         string sellerContact;
+        ProductCondition condition;
     }
 
     function Marketplace() public {
@@ -36,7 +33,8 @@ contract Marketplace {
         string _descLink, 
         uint _price, 
         address _sellerAddr,
-        string _sellerContact) public {
+        string _sellerContact,
+        uint _productCondition) public {
         productIndex += 1;
         Product memory product = Product(
             productIndex, 
@@ -47,14 +45,15 @@ contract Marketplace {
             _price, 
             Status.Unsold, 
             _sellerAddr, 
-            _sellerContact
+            _sellerContact,
+            ProductCondition(_productCondition)
         );
         stores[msg.sender][productIndex] = product;
         productIdInStore[productIndex] = msg.sender;
     }
 
-    function getProduct(uint _productId) public view returns (uint, string, string, string, string, uint, Status) {
+    function getProduct(uint _productId) public view returns (uint, string, string, string, string, uint, Status, ProductCondition) {
         Product memory product = stores[productIdInStore[_productId]][_productId];
-        return (product.id, product.name, product.category, product.imageLink, product.descLink, product.price, product.status);
+        return (product.id, product.name, product.category, product.imageLink, product.descLink, product.price, product.status, product.condition);
     }
 }
