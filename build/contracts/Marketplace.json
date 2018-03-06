@@ -1,0 +1,2158 @@
+{
+  "contractName": "Marketplace",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "productIndex",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_name",
+          "type": "string"
+        },
+        {
+          "name": "_category",
+          "type": "string"
+        },
+        {
+          "name": "_imageLink",
+          "type": "string"
+        },
+        {
+          "name": "_descLink",
+          "type": "string"
+        },
+        {
+          "name": "_price",
+          "type": "uint256"
+        },
+        {
+          "name": "_sellerAddr",
+          "type": "address"
+        },
+        {
+          "name": "_sellerContact",
+          "type": "string"
+        }
+      ],
+      "name": "addProductToStore",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_productId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getProduct",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "name": "",
+          "type": "string"
+        },
+        {
+          "name": "",
+          "type": "string"
+        },
+        {
+          "name": "",
+          "type": "string"
+        },
+        {
+          "name": "",
+          "type": "string"
+        },
+        {
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x6060604052341561000f57600080fd5b60008081905550610cb4806100256000396000f300606060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680635bc7dffd1461005c578063b9db15b4146101ed578063c897d5a6146103f0575b600080fd5b341561006757600080fd5b6101eb600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091905050610419565b005b34156101f857600080fd5b61020e6004808035906020019091905050610660565b604051808881526020018060200180602001806020018060200187815260200186600181111561023a57fe5b60ff16815260200185810385528b818151815260200191508051906020019080838360005b8381101561027a57808201518184015260208101905061025f565b50505050905090810190601f1680156102a75780820380516001836020036101000a031916815260200191505b5085810384528a818151815260200191508051906020019080838360005b838110156102e05780820151818401526020810190506102c5565b50505050905090810190601f16801561030d5780820380516001836020036101000a031916815260200191505b50858103835289818151815260200191508051906020019080838360005b8381101561034657808201518184015260208101905061032b565b50505050905090810190601f1680156103735780820380516001836020036101000a031916815260200191505b50858103825288818151815260200191508051906020019080838360005b838110156103ac578082015181840152602081019050610391565b50505050905090810190601f1680156103d95780820380516001836020036101000a031916815260200191505b509b50505050505050505050505060405180910390f35b34156103fb57600080fd5b610403610b29565b6040518082815260200191505060405180910390f35b610421610b2f565b600160008082825401925050819055506101206040519081016040528060005481526020018981526020018881526020018781526020018681526020018581526020016000600181111561047157fe5b81526020018473ffffffffffffffffffffffffffffffffffffffff16815260200183815250905080600160003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600080548152602001908152602001600020600082015181600001556020820151816001019080519060200190610510929190610bbb565b50604082015181600201908051906020019061052d929190610bbb565b50606082015181600301908051906020019061054a929190610bbb565b506080820151816004019080519060200190610567929190610bbb565b5060a0820151816005015560c08201518160060160006101000a81548160ff0219169083600181111561059657fe5b021790555060e08201518160060160016101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506101008201518160070190805190602001906105ff929190610bbb565b5090505033600260008054815260200190815260200160002060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505050505050505050565b600061066a610c3b565b610672610c3b565b61067a610c3b565b610682610c3b565b60008061068d610b2f565b60016000600260008c815260200190815260200160002060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008a8152602001908152602001600020610120604051908101604052908160008201548152602001600182018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156107c05780601f10610795576101008083540402835291602001916107c0565b820191906000526020600020905b8154815290600101906020018083116107a357829003601f168201915b50505050508152602001600282018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156108625780601f1061083757610100808354040283529160200191610862565b820191906000526020600020905b81548152906001019060200180831161084557829003601f168201915b50505050508152602001600382018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156109045780601f106108d957610100808354040283529160200191610904565b820191906000526020600020905b8154815290600101906020018083116108e757829003601f168201915b50505050508152602001600482018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156109a65780601f1061097b576101008083540402835291602001916109a6565b820191906000526020600020905b81548152906001019060200180831161098957829003601f168201915b50505050508152602001600582015481526020016006820160009054906101000a900460ff1660018111156109d757fe5b60018111156109e257fe5b81526020016006820160019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001600782018054600181600116156101000203166002900480601f016020809104026020016040519081016040528092919081815260200182805460018160011615610100020316600290048015610ad55780601f10610aaa57610100808354040283529160200191610ad5565b820191906000526020600020905b815481529060010190602001808311610ab857829003601f168201915b5050505050815250509050806000015181602001518260400151836060015184608001518560a001518660c00151859550849450839350829250975097509750975097509750975050919395979092949650565b60005481565b6101206040519081016040528060008152602001610b4b610c4f565b8152602001610b58610c4f565b8152602001610b65610c4f565b8152602001610b72610c4f565b81526020016000815260200160006001811115610b8b57fe5b8152602001600073ffffffffffffffffffffffffffffffffffffffff168152602001610bb5610c4f565b81525090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f10610bfc57805160ff1916838001178555610c2a565b82800160010185558215610c2a579182015b82811115610c29578251825591602001919060010190610c0e565b5b509050610c379190610c63565b5090565b602060405190810160405280600081525090565b602060405190810160405280600081525090565b610c8591905b80821115610c81576000816000905550600101610c69565b5090565b905600a165627a7a72305820877c6bce571cf18fdf3004c38f903b450b3361ceb3c5d0b2b03abe0fd01918330029",
+  "deployedBytecode": "0x606060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680635bc7dffd1461005c578063b9db15b4146101ed578063c897d5a6146103f0575b600080fd5b341561006757600080fd5b6101eb600480803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509190803590602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091905050610419565b005b34156101f857600080fd5b61020e6004808035906020019091905050610660565b604051808881526020018060200180602001806020018060200187815260200186600181111561023a57fe5b60ff16815260200185810385528b818151815260200191508051906020019080838360005b8381101561027a57808201518184015260208101905061025f565b50505050905090810190601f1680156102a75780820380516001836020036101000a031916815260200191505b5085810384528a818151815260200191508051906020019080838360005b838110156102e05780820151818401526020810190506102c5565b50505050905090810190601f16801561030d5780820380516001836020036101000a031916815260200191505b50858103835289818151815260200191508051906020019080838360005b8381101561034657808201518184015260208101905061032b565b50505050905090810190601f1680156103735780820380516001836020036101000a031916815260200191505b50858103825288818151815260200191508051906020019080838360005b838110156103ac578082015181840152602081019050610391565b50505050905090810190601f1680156103d95780820380516001836020036101000a031916815260200191505b509b50505050505050505050505060405180910390f35b34156103fb57600080fd5b610403610b29565b6040518082815260200191505060405180910390f35b610421610b2f565b600160008082825401925050819055506101206040519081016040528060005481526020018981526020018881526020018781526020018681526020018581526020016000600181111561047157fe5b81526020018473ffffffffffffffffffffffffffffffffffffffff16815260200183815250905080600160003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020600080548152602001908152602001600020600082015181600001556020820151816001019080519060200190610510929190610bbb565b50604082015181600201908051906020019061052d929190610bbb565b50606082015181600301908051906020019061054a929190610bbb565b506080820151816004019080519060200190610567929190610bbb565b5060a0820151816005015560c08201518160060160006101000a81548160ff0219169083600181111561059657fe5b021790555060e08201518160060160016101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506101008201518160070190805190602001906105ff929190610bbb565b5090505033600260008054815260200190815260200160002060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505050505050505050565b600061066a610c3b565b610672610c3b565b61067a610c3b565b610682610c3b565b60008061068d610b2f565b60016000600260008c815260200190815260200160002060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060008a8152602001908152602001600020610120604051908101604052908160008201548152602001600182018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156107c05780601f10610795576101008083540402835291602001916107c0565b820191906000526020600020905b8154815290600101906020018083116107a357829003601f168201915b50505050508152602001600282018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156108625780601f1061083757610100808354040283529160200191610862565b820191906000526020600020905b81548152906001019060200180831161084557829003601f168201915b50505050508152602001600382018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156109045780601f106108d957610100808354040283529160200191610904565b820191906000526020600020905b8154815290600101906020018083116108e757829003601f168201915b50505050508152602001600482018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156109a65780601f1061097b576101008083540402835291602001916109a6565b820191906000526020600020905b81548152906001019060200180831161098957829003601f168201915b50505050508152602001600582015481526020016006820160009054906101000a900460ff1660018111156109d757fe5b60018111156109e257fe5b81526020016006820160019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001600782018054600181600116156101000203166002900480601f016020809104026020016040519081016040528092919081815260200182805460018160011615610100020316600290048015610ad55780601f10610aaa57610100808354040283529160200191610ad5565b820191906000526020600020905b815481529060010190602001808311610ab857829003601f168201915b5050505050815250509050806000015181602001518260400151836060015184608001518560a001518660c00151859550849450839350829250975097509750975097509750975050919395979092949650565b60005481565b6101206040519081016040528060008152602001610b4b610c4f565b8152602001610b58610c4f565b8152602001610b65610c4f565b8152602001610b72610c4f565b81526020016000815260200160006001811115610b8b57fe5b8152602001600073ffffffffffffffffffffffffffffffffffffffff168152602001610bb5610c4f565b81525090565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f10610bfc57805160ff1916838001178555610c2a565b82800160010185558215610c2a579182015b82811115610c29578251825591602001919060010190610c0e565b5b509050610c379190610c63565b5090565b602060405190810160405280600081525090565b602060405190810160405280600081525090565b610c8591905b80821115610c81576000816000905550600101610c69565b5090565b905600a165627a7a72305820877c6bce571cf18fdf3004c38f903b450b3361ceb3c5d0b2b03abe0fd01918330029",
+  "sourceMap": "30:1628:0:-;;;585:65;;;;;;;;641:1;626:12;:16;;;;30:1628;;;;;;",
+  "deployedSourceMap": "30:1628:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;658:657;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1323:332;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:2;8:100;;;99:1;94:3;90;84:5;80:1;75:3;71;64:6;52:2;49:1;45:3;40:15;;8:100;;;12:14;3:109;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1;8:100;33:3;30:1;27:2;8:100;;;99:1;94:3;90;84:5;80:1;75:3;71;64:6;52:2;49:1;45:3;40:15;;8:100;;;12:14;3:109;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1;8:100;33:3;30:1;27:2;8:100;;;99:1;94:3;90;84:5;80:1;75:3;71;64:6;52:2;49:1;45:3;40:15;;8:100;;;12:14;3:109;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1;8:100;33:3;30:1;27:2;8:100;;;99:1;94:3;90;84:5;80:1;75:3;71;64:6;52:2;49:1;45:3;40:15;;8:100;;;12:14;3:109;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;173:24:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;658:657;926:22;;:::i;:::-;914:1;898:12;;:17;;;;;;;;;;;951:249;;;;;;;;;973:12;;951:249;;;;1001:5;951:249;;;;1022:9;951:249;;;;1046:10;951:249;;;;1072:9;951:249;;;;1097:6;951:249;;;;1119:13;951:249;;;;;;;;;;;;1148:11;951:249;;;;;;1175:14;951:249;;;926:274;;1246:7;1211:6;:18;1218:10;1211:18;;;;;;;;;;;;;;;:32;1230:12;;1211:32;;;;;;;;;;;:42;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;1297:10;1264:16;:30;1281:12;;1264:30;;;;;;;;;;;;:43;;;;;;;;;;;;;;;;;;658:657;;;;;;;;:::o;1323:332::-;1381:4;1387:6;;:::i;:::-;1395;;:::i;:::-;1403;;:::i;:::-;1411;;:::i;:::-;1419:4;1425:6;1444:22;;:::i;:::-;1469:6;:36;1476:16;:28;1493:10;1476:28;;;;;;;;;;;;;;;;;;;;;1469:36;;;;;;;;;;;;;;;:48;1506:10;1469:48;;;;;;;;;;;1444:73;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1536:7;:10;;;1548:7;:12;;;1562:7;:16;;;1580:7;:17;;;1599:7;:16;;;1617:7;:13;;;1632:7;:14;;;1528:119;;;;;;;;;;;;;;;;;;;;;;;;;;1323:332;;;;;;;;;;:::o;173:24::-;;;;:::o;30:1628::-;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.4.18;\r\n\r\n\r\ncontract Marketplace {\r\n    enum Status { Unsold, Sold }\r\n\r\n    struct Seller { \r\n        string contact;\r\n        address addr;\r\n    }\r\n\r\n    uint public productIndex;\r\n    mapping (address => mapping(uint => Product)) private stores;\r\n    mapping (uint => address) private productIdInStore;\r\n\r\n    struct Product {\r\n        uint id;\r\n        string name;\r\n        string category;\r\n        string imageLink;\r\n        string descLink;\r\n        uint price;\r\n        Status status;\r\n        address sellerAddr;\r\n        string sellerContact;\r\n    }\r\n\r\n    function Marketplace() public {\r\n        productIndex = 0;\r\n    }\r\n\r\n    function addProductToStore(\r\n        string _name, \r\n        string _category, \r\n        string _imageLink, \r\n        string _descLink, \r\n        uint _price, \r\n        address _sellerAddr,\r\n        string _sellerContact) public {\r\n        productIndex += 1;\r\n        Product memory product = Product(\r\n            productIndex, \r\n            _name, \r\n            _category,\r\n            _imageLink, \r\n            _descLink, \r\n            _price, \r\n            Status.Unsold, \r\n            _sellerAddr, \r\n            _sellerContact\r\n        );\r\n        stores[msg.sender][productIndex] = product;\r\n        productIdInStore[productIndex] = msg.sender;\r\n    }\r\n\r\n    function getProduct(uint _productId) public view returns (uint, string, string, string, string, uint, Status) {\r\n        Product memory product = stores[productIdInStore[_productId]][_productId];\r\n        return (product.id, product.name, product.category, product.imageLink, product.descLink, product.price, product.status);\r\n    }\r\n}",
+  "sourcePath": "E:\\Work\\marketplace_dapp\\contracts\\Marketplace.sol",
+  "ast": {
+    "attributes": {
+      "absolutePath": "/E/Work/marketplace_dapp/contracts/Marketplace.sol",
+      "exportedSymbols": {
+        "Marketplace": [
+          148
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.4",
+            ".18"
+          ]
+        },
+        "id": 1,
+        "name": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            148
+          ],
+          "name": "Marketplace",
+          "scope": 149
+        },
+        "children": [
+          {
+            "attributes": {
+              "canonicalName": "Marketplace.Status",
+              "name": "Status"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "Unsold"
+                },
+                "id": 2,
+                "name": "EnumValue",
+                "src": "72:6:0"
+              },
+              {
+                "attributes": {
+                  "name": "Sold"
+                },
+                "id": 3,
+                "name": "EnumValue",
+                "src": "80:4:0"
+              }
+            ],
+            "id": 4,
+            "name": "EnumDefinition",
+            "src": "58:28:0"
+          },
+          {
+            "attributes": {
+              "canonicalName": "Marketplace.Seller",
+              "name": "Seller",
+              "scope": 148,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "contact",
+                  "scope": 9,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string storage pointer",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string storage pointer"
+                    },
+                    "id": 5,
+                    "name": "ElementaryTypeName",
+                    "src": "120:6:0"
+                  }
+                ],
+                "id": 6,
+                "name": "VariableDeclaration",
+                "src": "120:14:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "addr",
+                  "scope": 9,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "address",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "type": "address"
+                    },
+                    "id": 7,
+                    "name": "ElementaryTypeName",
+                    "src": "145:7:0"
+                  }
+                ],
+                "id": 8,
+                "name": "VariableDeclaration",
+                "src": "145:12:0"
+              }
+            ],
+            "id": 9,
+            "name": "StructDefinition",
+            "src": "94:71:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "productIndex",
+              "scope": 148,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "uint256",
+              "value": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "uint",
+                  "type": "uint256"
+                },
+                "id": 10,
+                "name": "ElementaryTypeName",
+                "src": "173:4:0"
+              }
+            ],
+            "id": 11,
+            "name": "VariableDeclaration",
+            "src": "173:24:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "stores",
+              "scope": 148,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(address => mapping(uint256 => struct Marketplace.Product storage ref))",
+              "value": null,
+              "visibility": "private"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "type": "mapping(address => mapping(uint256 => struct Marketplace.Product storage ref))"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "type": "address"
+                    },
+                    "id": 12,
+                    "name": "ElementaryTypeName",
+                    "src": "213:7:0"
+                  },
+                  {
+                    "attributes": {
+                      "type": "mapping(uint256 => struct Marketplace.Product storage ref)"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 13,
+                        "name": "ElementaryTypeName",
+                        "src": "232:4:0"
+                      },
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "Product",
+                          "referencedDeclaration": 40,
+                          "type": "struct Marketplace.Product storage pointer"
+                        },
+                        "id": 14,
+                        "name": "UserDefinedTypeName",
+                        "src": "240:7:0"
+                      }
+                    ],
+                    "id": 15,
+                    "name": "Mapping",
+                    "src": "224:24:0"
+                  }
+                ],
+                "id": 16,
+                "name": "Mapping",
+                "src": "204:45:0"
+              }
+            ],
+            "id": 17,
+            "name": "VariableDeclaration",
+            "src": "204:60:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "name": "productIdInStore",
+              "scope": 148,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(uint256 => address)",
+              "value": null,
+              "visibility": "private"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "type": "mapping(uint256 => address)"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 18,
+                    "name": "ElementaryTypeName",
+                    "src": "280:4:0"
+                  },
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "type": "address"
+                    },
+                    "id": 19,
+                    "name": "ElementaryTypeName",
+                    "src": "288:7:0"
+                  }
+                ],
+                "id": 20,
+                "name": "Mapping",
+                "src": "271:25:0"
+              }
+            ],
+            "id": 21,
+            "name": "VariableDeclaration",
+            "src": "271:50:0"
+          },
+          {
+            "attributes": {
+              "canonicalName": "Marketplace.Product",
+              "name": "Product",
+              "scope": 148,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "id",
+                  "scope": 40,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 22,
+                    "name": "ElementaryTypeName",
+                    "src": "356:4:0"
+                  }
+                ],
+                "id": 23,
+                "name": "VariableDeclaration",
+                "src": "356:7:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "name",
+                  "scope": 40,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string storage pointer",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string storage pointer"
+                    },
+                    "id": 24,
+                    "name": "ElementaryTypeName",
+                    "src": "374:6:0"
+                  }
+                ],
+                "id": 25,
+                "name": "VariableDeclaration",
+                "src": "374:11:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "category",
+                  "scope": 40,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string storage pointer",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string storage pointer"
+                    },
+                    "id": 26,
+                    "name": "ElementaryTypeName",
+                    "src": "396:6:0"
+                  }
+                ],
+                "id": 27,
+                "name": "VariableDeclaration",
+                "src": "396:15:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "imageLink",
+                  "scope": 40,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string storage pointer",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string storage pointer"
+                    },
+                    "id": 28,
+                    "name": "ElementaryTypeName",
+                    "src": "422:6:0"
+                  }
+                ],
+                "id": 29,
+                "name": "VariableDeclaration",
+                "src": "422:16:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "descLink",
+                  "scope": 40,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string storage pointer",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string storage pointer"
+                    },
+                    "id": 30,
+                    "name": "ElementaryTypeName",
+                    "src": "449:6:0"
+                  }
+                ],
+                "id": 31,
+                "name": "VariableDeclaration",
+                "src": "449:15:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "price",
+                  "scope": 40,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint256",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint",
+                      "type": "uint256"
+                    },
+                    "id": 32,
+                    "name": "ElementaryTypeName",
+                    "src": "475:4:0"
+                  }
+                ],
+                "id": 33,
+                "name": "VariableDeclaration",
+                "src": "475:10:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "status",
+                  "scope": 40,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "enum Marketplace.Status",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "Status",
+                      "referencedDeclaration": 4,
+                      "type": "enum Marketplace.Status"
+                    },
+                    "id": 34,
+                    "name": "UserDefinedTypeName",
+                    "src": "496:6:0"
+                  }
+                ],
+                "id": 35,
+                "name": "VariableDeclaration",
+                "src": "496:13:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "sellerAddr",
+                  "scope": 40,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "address",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "type": "address"
+                    },
+                    "id": 36,
+                    "name": "ElementaryTypeName",
+                    "src": "520:7:0"
+                  }
+                ],
+                "id": 37,
+                "name": "VariableDeclaration",
+                "src": "520:18:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "name": "sellerContact",
+                  "scope": 40,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string storage pointer",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string storage pointer"
+                    },
+                    "id": 38,
+                    "name": "ElementaryTypeName",
+                    "src": "549:6:0"
+                  }
+                ],
+                "id": 39,
+                "name": "VariableDeclaration",
+                "src": "549:20:0"
+              }
+            ],
+            "id": 40,
+            "name": "StructDefinition",
+            "src": "330:247:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": true,
+              "modifiers": [
+                null
+              ],
+              "name": "Marketplace",
+              "payable": false,
+              "scope": 148,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 41,
+                "name": "ParameterList",
+                "src": "605:2:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 42,
+                "name": "ParameterList",
+                "src": "615:0:0"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 11,
+                              "type": "uint256",
+                              "value": "productIndex"
+                            },
+                            "id": 43,
+                            "name": "Identifier",
+                            "src": "626:12:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "30",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 0",
+                              "value": "0"
+                            },
+                            "id": 44,
+                            "name": "Literal",
+                            "src": "641:1:0"
+                          }
+                        ],
+                        "id": 45,
+                        "name": "Assignment",
+                        "src": "626:16:0"
+                      }
+                    ],
+                    "id": 46,
+                    "name": "ExpressionStatement",
+                    "src": "626:16:0"
+                  }
+                ],
+                "id": 47,
+                "name": "Block",
+                "src": "615:35:0"
+              }
+            ],
+            "id": 48,
+            "name": "FunctionDefinition",
+            "src": "585:65:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "addProductToStore",
+              "payable": false,
+              "scope": 148,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_name",
+                      "scope": 101,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string memory",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string storage pointer"
+                        },
+                        "id": 49,
+                        "name": "ElementaryTypeName",
+                        "src": "695:6:0"
+                      }
+                    ],
+                    "id": 50,
+                    "name": "VariableDeclaration",
+                    "src": "695:12:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_category",
+                      "scope": 101,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string memory",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string storage pointer"
+                        },
+                        "id": 51,
+                        "name": "ElementaryTypeName",
+                        "src": "719:6:0"
+                      }
+                    ],
+                    "id": 52,
+                    "name": "VariableDeclaration",
+                    "src": "719:16:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_imageLink",
+                      "scope": 101,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string memory",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string storage pointer"
+                        },
+                        "id": 53,
+                        "name": "ElementaryTypeName",
+                        "src": "747:6:0"
+                      }
+                    ],
+                    "id": 54,
+                    "name": "VariableDeclaration",
+                    "src": "747:17:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_descLink",
+                      "scope": 101,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string memory",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string storage pointer"
+                        },
+                        "id": 55,
+                        "name": "ElementaryTypeName",
+                        "src": "776:6:0"
+                      }
+                    ],
+                    "id": 56,
+                    "name": "VariableDeclaration",
+                    "src": "776:16:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_price",
+                      "scope": 101,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 57,
+                        "name": "ElementaryTypeName",
+                        "src": "804:4:0"
+                      }
+                    ],
+                    "id": 58,
+                    "name": "VariableDeclaration",
+                    "src": "804:11:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_sellerAddr",
+                      "scope": 101,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "type": "address"
+                        },
+                        "id": 59,
+                        "name": "ElementaryTypeName",
+                        "src": "827:7:0"
+                      }
+                    ],
+                    "id": 60,
+                    "name": "VariableDeclaration",
+                    "src": "827:19:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_sellerContact",
+                      "scope": 101,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string memory",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string storage pointer"
+                        },
+                        "id": 61,
+                        "name": "ElementaryTypeName",
+                        "src": "857:6:0"
+                      }
+                    ],
+                    "id": 62,
+                    "name": "VariableDeclaration",
+                    "src": "857:21:0"
+                  }
+                ],
+                "id": 63,
+                "name": "ParameterList",
+                "src": "684:195:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 64,
+                "name": "ParameterList",
+                "src": "887:0:0"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "+=",
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 11,
+                              "type": "uint256",
+                              "value": "productIndex"
+                            },
+                            "id": 65,
+                            "name": "Identifier",
+                            "src": "898:12:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "31",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 1",
+                              "value": "1"
+                            },
+                            "id": 66,
+                            "name": "Literal",
+                            "src": "914:1:0"
+                          }
+                        ],
+                        "id": 67,
+                        "name": "Assignment",
+                        "src": "898:17:0"
+                      }
+                    ],
+                    "id": 68,
+                    "name": "ExpressionStatement",
+                    "src": "898:17:0"
+                  },
+                  {
+                    "attributes": {
+                      "assignments": [
+                        70
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "product",
+                          "scope": 101,
+                          "stateVariable": false,
+                          "storageLocation": "memory",
+                          "type": "struct Marketplace.Product memory",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "contractScope": null,
+                              "name": "Product",
+                              "referencedDeclaration": 40,
+                              "type": "struct Marketplace.Product storage pointer"
+                            },
+                            "id": 69,
+                            "name": "UserDefinedTypeName",
+                            "src": "926:7:0"
+                          }
+                        ],
+                        "id": 70,
+                        "name": "VariableDeclaration",
+                        "src": "926:22:0"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": true,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "struct Marketplace.Product memory",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_string_memory_ptr",
+                                  "typeString": "string memory"
+                                },
+                                {
+                                  "typeIdentifier": "t_string_memory_ptr",
+                                  "typeString": "string memory"
+                                },
+                                {
+                                  "typeIdentifier": "t_string_memory_ptr",
+                                  "typeString": "string memory"
+                                },
+                                {
+                                  "typeIdentifier": "t_string_memory_ptr",
+                                  "typeString": "string memory"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_enum$_Status_$4",
+                                  "typeString": "enum Marketplace.Status"
+                                },
+                                {
+                                  "typeIdentifier": "t_address",
+                                  "typeString": "address"
+                                },
+                                {
+                                  "typeIdentifier": "t_string_memory_ptr",
+                                  "typeString": "string memory"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 40,
+                              "type": "type(struct Marketplace.Product storage pointer)",
+                              "value": "Product"
+                            },
+                            "id": 71,
+                            "name": "Identifier",
+                            "src": "951:7:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 11,
+                              "type": "uint256",
+                              "value": "productIndex"
+                            },
+                            "id": 72,
+                            "name": "Identifier",
+                            "src": "973:12:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 50,
+                              "type": "string memory",
+                              "value": "_name"
+                            },
+                            "id": 73,
+                            "name": "Identifier",
+                            "src": "1001:5:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 52,
+                              "type": "string memory",
+                              "value": "_category"
+                            },
+                            "id": 74,
+                            "name": "Identifier",
+                            "src": "1022:9:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 54,
+                              "type": "string memory",
+                              "value": "_imageLink"
+                            },
+                            "id": 75,
+                            "name": "Identifier",
+                            "src": "1046:10:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 56,
+                              "type": "string memory",
+                              "value": "_descLink"
+                            },
+                            "id": 76,
+                            "name": "Identifier",
+                            "src": "1072:9:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 58,
+                              "type": "uint256",
+                              "value": "_price"
+                            },
+                            "id": 77,
+                            "name": "Identifier",
+                            "src": "1097:6:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "member_name": "Unsold",
+                              "referencedDeclaration": null,
+                              "type": "enum Marketplace.Status"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 4,
+                                  "type": "type(enum Marketplace.Status)",
+                                  "value": "Status"
+                                },
+                                "id": 78,
+                                "name": "Identifier",
+                                "src": "1119:6:0"
+                              }
+                            ],
+                            "id": 79,
+                            "name": "MemberAccess",
+                            "src": "1119:13:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 60,
+                              "type": "address",
+                              "value": "_sellerAddr"
+                            },
+                            "id": 80,
+                            "name": "Identifier",
+                            "src": "1148:11:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 62,
+                              "type": "string memory",
+                              "value": "_sellerContact"
+                            },
+                            "id": 81,
+                            "name": "Identifier",
+                            "src": "1175:14:0"
+                          }
+                        ],
+                        "id": 82,
+                        "name": "FunctionCall",
+                        "src": "951:249:0"
+                      }
+                    ],
+                    "id": 83,
+                    "name": "VariableDeclarationStatement",
+                    "src": "926:274:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "struct Marketplace.Product storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "type": "struct Marketplace.Product storage ref"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "mapping(uint256 => struct Marketplace.Product storage ref)"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 17,
+                                      "type": "mapping(address => mapping(uint256 => struct Marketplace.Product storage ref))",
+                                      "value": "stores"
+                                    },
+                                    "id": 84,
+                                    "name": "Identifier",
+                                    "src": "1211:6:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "isConstant": false,
+                                      "isLValue": false,
+                                      "isPure": false,
+                                      "lValueRequested": false,
+                                      "member_name": "sender",
+                                      "referencedDeclaration": null,
+                                      "type": "address"
+                                    },
+                                    "children": [
+                                      {
+                                        "attributes": {
+                                          "argumentTypes": null,
+                                          "overloadedDeclarations": [
+                                            null
+                                          ],
+                                          "referencedDeclaration": 160,
+                                          "type": "msg",
+                                          "value": "msg"
+                                        },
+                                        "id": 85,
+                                        "name": "Identifier",
+                                        "src": "1218:3:0"
+                                      }
+                                    ],
+                                    "id": 86,
+                                    "name": "MemberAccess",
+                                    "src": "1218:10:0"
+                                  }
+                                ],
+                                "id": 88,
+                                "name": "IndexAccess",
+                                "src": "1211:18:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 11,
+                                  "type": "uint256",
+                                  "value": "productIndex"
+                                },
+                                "id": 87,
+                                "name": "Identifier",
+                                "src": "1230:12:0"
+                              }
+                            ],
+                            "id": 89,
+                            "name": "IndexAccess",
+                            "src": "1211:32:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 70,
+                              "type": "struct Marketplace.Product memory",
+                              "value": "product"
+                            },
+                            "id": 90,
+                            "name": "Identifier",
+                            "src": "1246:7:0"
+                          }
+                        ],
+                        "id": 91,
+                        "name": "Assignment",
+                        "src": "1211:42:0"
+                      }
+                    ],
+                    "id": 92,
+                    "name": "ExpressionStatement",
+                    "src": "1211:42:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "type": "address"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 21,
+                                  "type": "mapping(uint256 => address)",
+                                  "value": "productIdInStore"
+                                },
+                                "id": 93,
+                                "name": "Identifier",
+                                "src": "1264:16:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 11,
+                                  "type": "uint256",
+                                  "value": "productIndex"
+                                },
+                                "id": 94,
+                                "name": "Identifier",
+                                "src": "1281:12:0"
+                              }
+                            ],
+                            "id": 95,
+                            "name": "IndexAccess",
+                            "src": "1264:30:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "sender",
+                              "referencedDeclaration": null,
+                              "type": "address"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 160,
+                                  "type": "msg",
+                                  "value": "msg"
+                                },
+                                "id": 96,
+                                "name": "Identifier",
+                                "src": "1297:3:0"
+                              }
+                            ],
+                            "id": 97,
+                            "name": "MemberAccess",
+                            "src": "1297:10:0"
+                          }
+                        ],
+                        "id": 98,
+                        "name": "Assignment",
+                        "src": "1264:43:0"
+                      }
+                    ],
+                    "id": 99,
+                    "name": "ExpressionStatement",
+                    "src": "1264:43:0"
+                  }
+                ],
+                "id": 100,
+                "name": "Block",
+                "src": "887:428:0"
+              }
+            ],
+            "id": 101,
+            "name": "FunctionDefinition",
+            "src": "658:657:0"
+          },
+          {
+            "attributes": {
+              "constant": true,
+              "implemented": true,
+              "isConstructor": false,
+              "modifiers": [
+                null
+              ],
+              "name": "getProduct",
+              "payable": false,
+              "scope": 148,
+              "stateMutability": "view",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "_productId",
+                      "scope": 147,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 102,
+                        "name": "ElementaryTypeName",
+                        "src": "1343:4:0"
+                      }
+                    ],
+                    "id": 103,
+                    "name": "VariableDeclaration",
+                    "src": "1343:15:0"
+                  }
+                ],
+                "id": 104,
+                "name": "ParameterList",
+                "src": "1342:17:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 147,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 105,
+                        "name": "ElementaryTypeName",
+                        "src": "1381:4:0"
+                      }
+                    ],
+                    "id": 106,
+                    "name": "VariableDeclaration",
+                    "src": "1381:4:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 147,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string memory",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string storage pointer"
+                        },
+                        "id": 107,
+                        "name": "ElementaryTypeName",
+                        "src": "1387:6:0"
+                      }
+                    ],
+                    "id": 108,
+                    "name": "VariableDeclaration",
+                    "src": "1387:6:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 147,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string memory",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string storage pointer"
+                        },
+                        "id": 109,
+                        "name": "ElementaryTypeName",
+                        "src": "1395:6:0"
+                      }
+                    ],
+                    "id": 110,
+                    "name": "VariableDeclaration",
+                    "src": "1395:6:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 147,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string memory",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string storage pointer"
+                        },
+                        "id": 111,
+                        "name": "ElementaryTypeName",
+                        "src": "1403:6:0"
+                      }
+                    ],
+                    "id": 112,
+                    "name": "VariableDeclaration",
+                    "src": "1403:6:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 147,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "string memory",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string storage pointer"
+                        },
+                        "id": 113,
+                        "name": "ElementaryTypeName",
+                        "src": "1411:6:0"
+                      }
+                    ],
+                    "id": 114,
+                    "name": "VariableDeclaration",
+                    "src": "1411:6:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 147,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint",
+                          "type": "uint256"
+                        },
+                        "id": 115,
+                        "name": "ElementaryTypeName",
+                        "src": "1419:4:0"
+                      }
+                    ],
+                    "id": 116,
+                    "name": "VariableDeclaration",
+                    "src": "1419:4:0"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "scope": 147,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "enum Marketplace.Status",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "Status",
+                          "referencedDeclaration": 4,
+                          "type": "enum Marketplace.Status"
+                        },
+                        "id": 117,
+                        "name": "UserDefinedTypeName",
+                        "src": "1425:6:0"
+                      }
+                    ],
+                    "id": 118,
+                    "name": "VariableDeclaration",
+                    "src": "1425:6:0"
+                  }
+                ],
+                "id": 119,
+                "name": "ParameterList",
+                "src": "1380:52:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        121
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "product",
+                          "scope": 147,
+                          "stateVariable": false,
+                          "storageLocation": "memory",
+                          "type": "struct Marketplace.Product memory",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "contractScope": null,
+                              "name": "Product",
+                              "referencedDeclaration": 40,
+                              "type": "struct Marketplace.Product storage pointer"
+                            },
+                            "id": 120,
+                            "name": "UserDefinedTypeName",
+                            "src": "1444:7:0"
+                          }
+                        ],
+                        "id": 121,
+                        "name": "VariableDeclaration",
+                        "src": "1444:22:0"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "struct Marketplace.Product storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "type": "mapping(uint256 => struct Marketplace.Product storage ref)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 17,
+                                  "type": "mapping(address => mapping(uint256 => struct Marketplace.Product storage ref))",
+                                  "value": "stores"
+                                },
+                                "id": 122,
+                                "name": "Identifier",
+                                "src": "1469:6:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "address"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 21,
+                                      "type": "mapping(uint256 => address)",
+                                      "value": "productIdInStore"
+                                    },
+                                    "id": 123,
+                                    "name": "Identifier",
+                                    "src": "1476:16:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 103,
+                                      "type": "uint256",
+                                      "value": "_productId"
+                                    },
+                                    "id": 124,
+                                    "name": "Identifier",
+                                    "src": "1493:10:0"
+                                  }
+                                ],
+                                "id": 125,
+                                "name": "IndexAccess",
+                                "src": "1476:28:0"
+                              }
+                            ],
+                            "id": 126,
+                            "name": "IndexAccess",
+                            "src": "1469:36:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 103,
+                              "type": "uint256",
+                              "value": "_productId"
+                            },
+                            "id": 127,
+                            "name": "Identifier",
+                            "src": "1506:10:0"
+                          }
+                        ],
+                        "id": 128,
+                        "name": "IndexAccess",
+                        "src": "1469:48:0"
+                      }
+                    ],
+                    "id": 129,
+                    "name": "VariableDeclarationStatement",
+                    "src": "1444:73:0"
+                  },
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 119
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isInlineArray": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "tuple(uint256,string memory,string memory,string memory,string memory,uint256,enum Marketplace.Status)"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "id",
+                              "referencedDeclaration": 23,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 121,
+                                  "type": "struct Marketplace.Product memory",
+                                  "value": "product"
+                                },
+                                "id": 130,
+                                "name": "Identifier",
+                                "src": "1536:7:0"
+                              }
+                            ],
+                            "id": 131,
+                            "name": "MemberAccess",
+                            "src": "1536:10:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "name",
+                              "referencedDeclaration": 25,
+                              "type": "string memory"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 121,
+                                  "type": "struct Marketplace.Product memory",
+                                  "value": "product"
+                                },
+                                "id": 132,
+                                "name": "Identifier",
+                                "src": "1548:7:0"
+                              }
+                            ],
+                            "id": 133,
+                            "name": "MemberAccess",
+                            "src": "1548:12:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "category",
+                              "referencedDeclaration": 27,
+                              "type": "string memory"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 121,
+                                  "type": "struct Marketplace.Product memory",
+                                  "value": "product"
+                                },
+                                "id": 134,
+                                "name": "Identifier",
+                                "src": "1562:7:0"
+                              }
+                            ],
+                            "id": 135,
+                            "name": "MemberAccess",
+                            "src": "1562:16:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "imageLink",
+                              "referencedDeclaration": 29,
+                              "type": "string memory"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 121,
+                                  "type": "struct Marketplace.Product memory",
+                                  "value": "product"
+                                },
+                                "id": 136,
+                                "name": "Identifier",
+                                "src": "1580:7:0"
+                              }
+                            ],
+                            "id": 137,
+                            "name": "MemberAccess",
+                            "src": "1580:17:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "descLink",
+                              "referencedDeclaration": 31,
+                              "type": "string memory"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 121,
+                                  "type": "struct Marketplace.Product memory",
+                                  "value": "product"
+                                },
+                                "id": 138,
+                                "name": "Identifier",
+                                "src": "1599:7:0"
+                              }
+                            ],
+                            "id": 139,
+                            "name": "MemberAccess",
+                            "src": "1599:16:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "price",
+                              "referencedDeclaration": 33,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 121,
+                                  "type": "struct Marketplace.Product memory",
+                                  "value": "product"
+                                },
+                                "id": 140,
+                                "name": "Identifier",
+                                "src": "1617:7:0"
+                              }
+                            ],
+                            "id": 141,
+                            "name": "MemberAccess",
+                            "src": "1617:13:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "status",
+                              "referencedDeclaration": 35,
+                              "type": "enum Marketplace.Status"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 121,
+                                  "type": "struct Marketplace.Product memory",
+                                  "value": "product"
+                                },
+                                "id": 142,
+                                "name": "Identifier",
+                                "src": "1632:7:0"
+                              }
+                            ],
+                            "id": 143,
+                            "name": "MemberAccess",
+                            "src": "1632:14:0"
+                          }
+                        ],
+                        "id": 144,
+                        "name": "TupleExpression",
+                        "src": "1535:112:0"
+                      }
+                    ],
+                    "id": 145,
+                    "name": "Return",
+                    "src": "1528:119:0"
+                  }
+                ],
+                "id": 146,
+                "name": "Block",
+                "src": "1433:222:0"
+              }
+            ],
+            "id": 147,
+            "name": "FunctionDefinition",
+            "src": "1323:332:0"
+          }
+        ],
+        "id": 148,
+        "name": "ContractDefinition",
+        "src": "30:1628:0"
+      }
+    ],
+    "id": 149,
+    "name": "SourceUnit",
+    "src": "0:1658:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.19+commit.c4cbbb05.Emscripten.clang"
+  },
+  "networks": {
+    "1520373686169": {
+      "events": {},
+      "links": {},
+      "address": "0xfb232223065e72dd0da86ce138ff7a44d34afdc9"
+    },
+    "1520374803664": {
+      "events": {},
+      "links": {},
+      "address": "0xfb5ecb3180fa47bd574272978d16eb669da59222"
+    }
+  },
+  "schemaVersion": "1.0.1",
+  "updatedAt": "2018-03-06T22:20:24.595Z"
+}
