@@ -1,4 +1,4 @@
-/* global web3, $ */
+/* global web3, $, URLSearchParams */
 import '../stylesheets/app.css'
 
 // Import libraries we need.
@@ -14,7 +14,6 @@ const ipfs = ipfsAPI({ host: 'localhost', port: '5001', protocol: 'http' })
 
 let App = window.App = {
   start: function () {
-    var self = this
     var reader
 
     Marketplace.setProvider(web3.currentProvider)
@@ -36,6 +35,25 @@ let App = window.App = {
       })
       saveProduct(reader, decodedParams)
     })
+
+    if ($('#product-details').length > 0) {
+      // This is product details page
+      let productId = new URLSearchParams(window.location.search).get('id')
+      renderProductDetails(productId)
+    }
+
+    $('#buy').submit(function (event) {
+      event.preventDefault()
+      let amount = $('#amount').val()
+      let productId = $('#product-id').val()
+      Marketplace.deployed().then(function (i) {
+        i.buy(parseInt(productId), { value: web3.toWei(amount), from: web3.eth.accounts[1], gas: 440000 }).then(
+          function (f) {
+            // Redirect
+          }
+        )
+      })
+    })
   }
 }
 
@@ -54,7 +72,7 @@ window.addEventListener('load', function () {
   App.start()
 })
 
-function renderStore() {
+function renderStore () {
   Marketplace.deployed().then(function (i) {
     i.getProduct.call(1).then(function (p) {
       $('#product-list').append(buildProduct(p))
@@ -65,19 +83,23 @@ function renderStore() {
   })
 }
 
-function buildProduct(product) {
-  let node = $('<div/>')
-  node.addClass('col-sm-3 text-center col-margin-bottom-1')
-  node.append("<img src='https://ipfs.io/ipfs/" + product[3] + "' width='150px' />")
-  node.append('<div>' + product[1] + '</div>')
-  node.append('<div>' + product[2] + '</div>')
-  node.append('<div>' + product[7] + '</div>')
-  node.append('<div>' + product[6] + '</div>')
-  node.append('<div>Ether ' + product[5] + '</div>')
+function buildProduct (product) {
+  let node = $(`<div class="block">
+  <a href="product.html?id=${product[0]}" target="_blank" class="details">
+    <div class="top">
+      <img src="https://ipfs.io/ipfs/${product[3]}" alt="pic" />
+    </div>
+    
+    <div class="bottom">
+      <div class="heading">${product[1]}</div>
+      <div class="price">${displayPrice(product[5])}</div>
+    </div>
+  </a>
+</div>`)
   return node
 }
 
-function saveImageOnIpfs(reader) {
+function saveImageOnIpfs (reader) {
   return new Promise(function (resolve, reject) {
     const buffer = Buffer.from(reader.result)
     ipfs.add(buffer)
@@ -91,7 +113,7 @@ function saveImageOnIpfs(reader) {
   })
 }
 
-function saveTextBlobOnIpfs(blob) {
+function saveTextBlobOnIpfs (blob) {
   return new Promise(function (resolve, reject) {
     const descBuffer = Buffer.from(blob, 'utf-8')
     ipfs.add(descBuffer)
@@ -105,7 +127,7 @@ function saveTextBlobOnIpfs(blob) {
   })
 }
 
-function saveProduct(reader, decodedParams) {
+function saveProduct (reader, decodedParams) {
   let imageId, descId
   saveImageOnIpfs(reader).then(function (id) {
     imageId = id
@@ -116,12 +138,34 @@ function saveProduct(reader, decodedParams) {
   })
 }
 
-function saveProductToBlockchain(params, imageId, descId) {
+function saveProductToBlockchain (params, imageId, descId) {
   Marketplace.deployed().then(function (i) {
     i.addProductToStore(params['product-name'], params['product-category'], imageId, descId, web3.toWei(params['product-price'], 'ether'), params['seller-address'], params['seller-contacts'], parseInt(params['product-condition']), { from: web3.eth.accounts[0], gas: 440000 }).then(function (f) {
       $('#msg').show()
       $('#msg').html('Your product was successfully added to your store!')
     })
   })
+}
+
+function renderProductDetails (productId) {
+  Marketplace.deployed().then(function (i) {
+    i.getProduct.call(productId).then(function (p) {
+      let content = ''
+      ipfs.cat(p[4]).then(function (file) {
+        content = file.toString()
+        $('#product-desc').append('<div>' + content + '</div>')
+      })
+
+      $('.item-photo').append("<img src='https://ipfs.io/ipfs/" + p[3] + "' width='250px' />")
+      $('#product-price').html(displayPrice(p[5]))
+      $('#amount').val(p[5])
+      $('#product-name').html(p[1])
+      $('#product-id').val(p[0])
+    })
+  })
+}
+
+function displayPrice (amt) {
+  return 'Ξ' + web3.fromWei(amt, 'ether')
 }
 

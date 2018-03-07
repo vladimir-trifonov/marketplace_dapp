@@ -56,4 +56,8 @@ contract Marketplace {
         Product memory product = stores[productIdInStore[_productId]][_productId];
         return (product.id, product.name, product.category, product.imageLink, product.descLink, product.price, product.status, product.condition);
     }
+
+    function buy() {
+      
+    }
 }

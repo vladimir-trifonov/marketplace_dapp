@@ -3,41 +3,70 @@
 
 <head>
   <title>Decentralized Ecommerce Store</title>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
   <script src="./app.js"></script>
 </head>
 
 <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Marketplace</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Store</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/list-item.html">Sell Product
+
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Past Sales</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  <br/>
   <div class="container">
-    <h1>List an item</h1>
-    <div class="container">
-      <div class="row">
-        <div style="display: none;" class="alert alert-success" id="msg"></div>
-        <form class="form-horizontal col-sm-5" id="add-item-to-store">
+    <form id="add-item-to-store">
+      <div class="form-row">
+        <div class="col">
           <div class="form-group">
-            <label for="product-name" class="col-sm-2 control-label">Name</label>
-            <div class="col-sm-10">
+            <label for="product-name" class="control-label">Name</label>
+            <div>
               <input type="text" name="product-name" class="form-control" id="product-name" placeholder="iPhone, Jeans, shoes etc" required="required"></input>
             </div>
           </div>
           <div class="form-group">
-            <label for="product-description" class="col-sm-2 control-label">Description</label>
-            <div class="col-sm-10">
+            <label for="product-description" class="control-label">Description</label>
+            <div>
               <textarea class="form-control" name="product-description" rows="8" id="product-description" placeholder="Enter detailed product description"
                 required="required"></textarea>
             </div>
           </div>
           <div class="form-group">
-            <label for="product-image" class="col-sm-2 control-label">Upload product photo</label>
-            <div class="col-sm-10">
+            <label for="product-image" class="control-label">Upload product photo</label>
+            <div>
               <input type="file" name="product-image" class="form-control" id="product-image" required="required">
             </div>
           </div>
+        </div>
+        <div class="col">
           <div class="form-group">
-            <label for="product-category" class="col-sm-2 control-label">Category</label>
-            <div class="col-sm-10">
+            <label for="product-category" class="control-label">Category</label>
+            <div>
               <select class="form-control" name="product-category" id="product-category">
                 <option>Art</option>
                 <option>Books</option>
@@ -51,14 +80,14 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="product-price" class="col-sm-2 control-label">Price</label>
-            <div class="col-sm-10">
+            <label for="product-price" class="control-label">Price</label>
+            <div>
               <input type="text" class="form-control" name="product-price" id="product-price" required="required"></input>
             </div>
           </div>
           <div class="form-group">
-            <label for="product-condition" class="col-sm-2 control-label">Product Condition</label>
-            <div class="col-sm-10">
+            <label for="product-condition" class="control-label">Product Condition</label>
+            <div>
               <select class="form-control" name="product-condition" id="product-condition">
                 <option value="1">New</option>
                 <option value="2">Used</option>
@@ -66,25 +95,27 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="seller-address" class="col-sm-2 control-label">Etherium Address</label>
-            <div class="col-sm-10">
+            <label for="seller-address" class="control-label">Etherium Address</label>
+            <div>
               <input type="text" name="seller-address" class="form-control" id="seller-address" placeholder="Etherium address" required="required"></input>
             </div>
           </div>
           <div class="form-group">
-            <label for="seller-contacts" class="col-sm-2 control-label">Contact Information</label>
-            <div class="col-sm-10">
+            <label for="seller-contacts" class="control-label">Contact Information</label>
+            <div>
               <input type="text" name="seller-contacts" class="form-control" id="seller-contacts" placeholder="Contact Information" required="required"></input>
             </div>
           </div>
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-primary">Add Product To Store</button>
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
-    </div>
+
+      <div class="form-row float-right">
+        <div class="col-sm-10">
+          <button type="submit" class="btn btn-secondary">Add Product To Store</button>
+        </div>
+      </div>
+    </form>
+
   </div>
 </body>
 
