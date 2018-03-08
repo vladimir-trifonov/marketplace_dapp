@@ -1,4 +1,4 @@
-/* global web3, $, URLSearchParams */
+/* global web3, $, URLSearchParams, location, alert */
 import '../stylesheets/app.css'
 
 // Import libraries we need.
@@ -45,14 +45,43 @@ let App = window.App = {
     $('#buy').submit(function (event) {
       event.preventDefault()
       let amount = $('#amount').val()
-      let productId = $('#product-id').val()
+      let productId = new URLSearchParams(window.location.search).get('id')
+      let buyerContact = $('#buyer-contact').val()
       Marketplace.deployed().then(function (i) {
-        i.buy(parseInt(productId), { value: web3.toWei(amount), from: web3.eth.accounts[1], gas: 440000 }).then(
+        i.buy(parseInt(productId), buyerContact, { value: amount, from: web3.eth.accounts[0], gas: 800000 }).then(
           function (f) {
-            // Redirect
+            location.reload()
           }
         )
       })
+    })
+
+    $('#release-funds').click(function (event) {
+      event.preventDefault()
+      let productId = new URLSearchParams(window.location.search).get('id')
+      Marketplace.deployed().then(function (f) {
+        $('#msg').html('Your transaction has been submitted. Please wait for few seconds for the confirmation').show()
+        f.releaseAmountToSeller(productId, { from: web3.eth.accounts[0], gas: 100000 }).then(function (f) {
+          location.reload()
+        }).catch(function (e) {
+          console.log(e)
+        })
+      })
+    })
+
+    $('#refund-funds').click(function (event) {
+      event.preventDefault()
+      let productId = new URLSearchParams(window.location.search).get('id')
+      Marketplace.deployed().then(function (f) {
+        $('#msg').html('Your transaction has been submitted. Please wait for few seconds for the confirmation').show()
+        f.refundAmountToBuyer(productId, { from: web3.eth.accounts[0], gas: 100000 }).then(function (f) {
+          location.reload()
+        }).catch(function (e) {
+          console.log(e)
+        })
+      })
+
+      alert('refund the funds!')
     })
   }
 }
@@ -72,7 +101,7 @@ window.addEventListener('load', function () {
   App.start()
 })
 
-function renderStore () {
+function renderStore() {
   Marketplace.deployed().then(function (i) {
     i.getProduct.call(1).then(function (p) {
       $('#product-list').append(buildProduct(p))
@@ -83,7 +112,7 @@ function renderStore () {
   })
 }
 
-function buildProduct (product) {
+function buildProduct(product) {
   let node = $(`<div class="block">
   <a href="product.html?id=${product[0]}" target="_blank" class="details">
     <div class="top">
@@ -99,7 +128,7 @@ function buildProduct (product) {
   return node
 }
 
-function saveImageOnIpfs (reader) {
+function saveImageOnIpfs(reader) {
   return new Promise(function (resolve, reject) {
     const buffer = Buffer.from(reader.result)
     ipfs.add(buffer)
@@ -113,7 +142,7 @@ function saveImageOnIpfs (reader) {
   })
 }
 
-function saveTextBlobOnIpfs (blob) {
+function saveTextBlobOnIpfs(blob) {
   return new Promise(function (resolve, reject) {
     const descBuffer = Buffer.from(blob, 'utf-8')
     ipfs.add(descBuffer)
@@ -127,7 +156,7 @@ function saveTextBlobOnIpfs (blob) {
   })
 }
 
-function saveProduct (reader, decodedParams) {
+function saveProduct(reader, decodedParams) {
   let imageId, descId
   saveImageOnIpfs(reader).then(function (id) {
     imageId = id
@@ -138,16 +167,17 @@ function saveProduct (reader, decodedParams) {
   })
 }
 
-function saveProductToBlockchain (params, imageId, descId) {
+function saveProductToBlockchain(params, imageId, descId) {
   Marketplace.deployed().then(function (i) {
-    i.addProductToStore(params['product-name'], params['product-category'], imageId, descId, web3.toWei(params['product-price'], 'ether'), params['seller-address'], params['seller-contacts'], parseInt(params['product-condition']), { from: web3.eth.accounts[0], gas: 440000 }).then(function (f) {
+    i.addProductToStore(params['product-name'], params['product-category'], imageId, descId, web3.toWei(params['product-price'], 'ether'), params['seller-contacts'], parseInt(params['product-condition']), { from: web3.eth.accounts[0], gas: 600000 }).then(function (f) {
       $('#msg').show()
       $('#msg').html('Your product was successfully added to your store!')
+      document.getElementById('add-item-to-store').reset()
     })
   })
 }
 
-function renderProductDetails (productId) {
+function renderProductDetails(productId) {
   Marketplace.deployed().then(function (i) {
     i.getProduct.call(productId).then(function (p) {
       let content = ''
@@ -161,11 +191,31 @@ function renderProductDetails (productId) {
       $('#amount').val(p[5])
       $('#product-name').html(p[1])
       $('#product-id').val(p[0])
+      if (p[6].toNumber() === 1) {
+        i.escrowInfo.call(productId).then(function (f) {
+          if (!!f[3] === true) {
+            // Finalized
+            $('#buy').hide()
+            $('#sold').hide()
+            $('#finalized').show()
+          } else {
+            // Sold
+            $('#buy').hide()
+            $('#sold').show()
+            $('#finalized').hide()
+          }
+        })
+      } else {
+        // Unsold
+        $('#sold').hide()
+        $('#buy').show()
+        $('#finalized').hide()
+      }
     })
   })
 }
 
-function displayPrice (amt) {
+function displayPrice(amt) {
   return 'Ξ' + web3.fromWei(amt, 'ether')
 }
 

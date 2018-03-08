@@ -46,7 +46,7 @@
       </div>
       <div class="col-md-4 item-photo">
       </div>
-      <div class="col-md-4" style="border:0px solid gray">
+      <div class="col-md-4" style="border:1px solid #f6f6f6;padding-bottom: 15px;">
         <h3 id="product-name"></h3>
         <h6 class="title-price">
           <small>PRICE</small>
@@ -55,13 +55,33 @@
           <span id="product-price"></span>
         </h3>
 
-        <div class="section" style="padding-bottom:20px;">
+        <div class="section" style="padding-bottom:10px;">
           <form id="buy">
             <input type="hidden" name="product-id" id="product-id" />
             <input type="hidden" class="form-control" name="amount" id="amount" required="required">
-            <button class="btn btn-success" type="submit">
-              <span style="margin-right:20px" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Buy</button>
+            <h6 class="title-price">
+              <small>Deliver to</small>
+            </h6>
+            <input style="margin-top:5px;margin-bottom: 5px;" type="text" name="buyer-contact" class="form-control" id="buyer-contact"
+              placeholder="Address" required="required"></input>
+
+            <button class="btn btn-success btn-buy" type="submit">
+              <span aria-hidden="true"></span>Buy</button>
+            </button>
           </form>
+          <form id="sold">
+            <h3 style="color: red;">SOLD</h3>
+            <input type="hidden" name="product-id" id="product-id" />
+            <button class="btn btn-warning" type="submit" id="refund-funds">
+              <span aria-hidden="true"></span>Refund funds</button>
+            </button>
+            <button class="btn btn-success" type="submit" id="release-funds">
+              <span aria-hidden="true"></span>Release funds</button>
+            </button>
+          </form>
+          <div id="finalized">
+            <h3 style="color: red;">SOLD</h3>
+          </div>
         </div>
       </div>
 
