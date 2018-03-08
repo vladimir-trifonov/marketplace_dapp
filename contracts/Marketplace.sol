@@ -12,6 +12,8 @@ contract Marketplace {
     mapping (uint => address) private productIdInStore;
     mapping (uint => address) productEscrow;
 
+    event NewProduct(uint _productId, string _name, string _category, string _imageLink, string _descLink, uint _price, uint _productCondition);
+
     struct Product {
         uint id;
         string name;
@@ -59,6 +61,7 @@ contract Marketplace {
         );
         stores[msg.sender][productIndex] = product;
         productIdInStore[productIndex] = msg.sender;
+        NewProduct(productIndex, _name, _category, _imageLink, _descLink, _price, _productCondition);
     }
 
     function getProduct(uint _productId) public view returns (uint, string, string, string, string, uint, Status, ProductCondition) {

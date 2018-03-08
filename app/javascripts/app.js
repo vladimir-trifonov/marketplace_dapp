@@ -5,6 +5,8 @@ import '../stylesheets/app.css'
 import { default as Web3 } from 'web3'
 import { default as contract } from 'truffle-contract'
 import marketplaceArtifacts from '../../build/contracts/Marketplace.json'
+const offchainServer = 'http://localhost:3000'
+const categories = ['Art', 'Books', 'Cameras', 'Cell Phones & Accessories', 'Clothing', 'Computers & Tablets', 'Consumer Electronics', 'Other']
 
 var Marketplace = contract(marketplaceArtifacts)
 
@@ -47,8 +49,8 @@ let App = window.App = {
       let amount = $('#amount').val()
       let productId = new URLSearchParams(window.location.search).get('id')
       let buyerContact = $('#buyer-contact').val()
-      Marketplace.deployed().then(function (i) {
-        i.buy(parseInt(productId), buyerContact, { value: amount, from: web3.eth.accounts[0], gas: 800000 }).then(
+      Marketplace.deployed().then(function (contract) {
+        contract.buy(parseInt(productId), buyerContact, { value: amount, from: web3.eth.accounts[0], gas: 1000000 }).then(
           function (f) {
             location.reload()
           }
@@ -81,7 +83,7 @@ let App = window.App = {
         })
       })
 
-      alert('refund the funds!')
+      alert('Are you sure, do you want to refund the funds?')
     })
   }
 }
@@ -101,14 +103,36 @@ window.addEventListener('load', function () {
   App.start()
 })
 
+function renderProducts(div, filters) {
+  $.ajax({
+    url: offchainServer + '/products',
+    type: 'get',
+    contentType: 'application/json charset=utf-8',
+    data: filters
+  }).done(function (data) {
+    if (data.length === 0) {
+      $('#' + div).html('No products found')
+    } else {
+      $('#' + div).html('')
+    }
+    while (data.length > 0) {
+      let chunks = data.splice(0, 4)
+      let row = $('<div/>')
+      row.addClass('row')
+      chunks.forEach(function (value) {
+        let node = buildProduct(value)
+        row.append(node)
+      })
+      $('#' + div).append(row)
+    }
+  })
+}
+
 function renderStore() {
-  Marketplace.deployed().then(function (i) {
-    i.getProduct.call(1).then(function (p) {
-      $('#product-list').append(buildProduct(p))
-    })
-    i.getProduct.call(2).then(function (p) {
-      $('#product-list').append(buildProduct(p))
-    })
+  renderProducts('product-list', { status: 'Unsold' })
+  renderProducts('product-sold-list', { status: 'Sold' })
+  categories.forEach(function (value) {
+    $('#categories').append('<div>' + value + '')
   })
 }
 
@@ -168,8 +192,8 @@ function saveProduct(reader, decodedParams) {
 }
 
 function saveProductToBlockchain(params, imageId, descId) {
-  Marketplace.deployed().then(function (i) {
-    i.addProductToStore(params['product-name'], params['product-category'], imageId, descId, web3.toWei(params['product-price'], 'ether'), params['seller-contacts'], parseInt(params['product-condition']), { from: web3.eth.accounts[0], gas: 600000 }).then(function (f) {
+  Marketplace.deployed().then(function (contract) {
+    contract.addProductToStore(params['product-name'], params['product-category'], imageId, descId, web3.toWei(params['product-price'], 'ether'), params['seller-contacts'], parseInt(params['product-condition']), { from: web3.eth.accounts[0], gas: 600000 }).then(function (f) {
       $('#msg').show()
       $('#msg').html('Your product was successfully added to your store!')
       document.getElementById('add-item-to-store').reset()
@@ -178,21 +202,21 @@ function saveProductToBlockchain(params, imageId, descId) {
 }
 
 function renderProductDetails(productId) {
-  Marketplace.deployed().then(function (i) {
-    i.getProduct.call(productId).then(function (p) {
+  Marketplace.deployed().then(function (contract) {
+    contract.getProduct.call(productId).then(function (product) {
       let content = ''
-      ipfs.cat(p[4]).then(function (file) {
+      ipfs.cat(product[4]).then(function (file) {
         content = file.toString()
         $('#product-desc').append('<div>' + content + '</div>')
       })
 
-      $('.item-photo').append("<img src='https://ipfs.io/ipfs/" + p[3] + "' width='250px' />")
-      $('#product-price').html(displayPrice(p[5]))
-      $('#amount').val(p[5])
-      $('#product-name').html(p[1])
-      $('#product-id').val(p[0])
-      if (p[6].toNumber() === 1) {
-        i.escrowInfo.call(productId).then(function (f) {
+      $('.item-photo').append("<img src='https://ipfs.io/ipfs/" + product[3] + "' width='250px' />")
+      $('#product-price').html(displayPrice(product[5]))
+      $('#amount').val(product[5])
+      $('#product-name').html(product[1])
+      $('#product-id').val(product[0])
+      if (product[6].toNumber() === 1) {
+        contract.escrowInfo.call(productId).then(function (f) {
           if (!!f[3] === true) {
             // Finalized
             $('#buy').hide()
