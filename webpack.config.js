@@ -12,7 +12,8 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: './app/index.html', to: "index.html" },
       { from: './app/list-item.html', to: "list-item.html" },
-      { from: './app/product.html', to: "product.html" }
+      { from: './app/product.html', to: "product.html" },
+      { from: './app/product-sold-list.html', to: "product-sold-list.html" }
     ])
   ],
   module: {

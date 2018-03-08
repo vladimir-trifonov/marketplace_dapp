@@ -1,6 +1,5 @@
 pragma solidity ^0.4.18;
 
-
 contract Escrow {
     uint public productId;
     address public buyer;

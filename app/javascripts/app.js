@@ -6,7 +6,6 @@ import { default as Web3 } from 'web3'
 import { default as contract } from 'truffle-contract'
 import marketplaceArtifacts from '../../build/contracts/Marketplace.json'
 const offchainServer = 'http://localhost:3000'
-const categories = ['Art', 'Books', 'Cameras', 'Cell Phones & Accessories', 'Clothing', 'Computers & Tablets', 'Consumer Electronics', 'Other']
 
 var Marketplace = contract(marketplaceArtifacts)
 
@@ -129,23 +128,25 @@ function renderProducts(div, filters) {
 }
 
 function renderStore() {
-  renderProducts('product-list', { status: 'Unsold' })
-  renderProducts('product-sold-list', { status: 'Sold' })
-  categories.forEach(function (value) {
-    $('#categories').append('<div>' + value + '')
-  })
+  if ($('#product-list').length > 0) {
+    renderProducts('product-list', { status: 'Unsold' })
+  }
+
+  if ($('#product-sold-list').length > 0) {
+    renderProducts('product-sold-list', { status: 'Sold' })
+  }
 }
 
 function buildProduct(product) {
   let node = $(`<div class="block">
-  <a href="product.html?id=${product[0]}" target="_blank" class="details">
+  <a href="product.html?id=${product.blockchainId}" target="_blank" class="details">
     <div class="top">
-      <img src="https://ipfs.io/ipfs/${product[3]}" alt="pic" />
+      <img src="https://ipfs.io/ipfs/${product.ipfsImageHash}" alt="pic" />
     </div>
     
     <div class="bottom">
-      <div class="heading">${product[1]}</div>
-      <div class="price">${displayPrice(product[5])}</div>
+      <div class="heading">${product.name}</div>
+      <div class="price">${displayPrice(product.price)}</div>
     </div>
   </a>
 </div>`)

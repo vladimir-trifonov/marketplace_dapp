@@ -1,6 +1,6 @@
 pragma solidity ^0.4.18;
 import "./Escrow.sol";
-
+import "./SafeMath.sol";
 
 contract Marketplace {
     address owner;
@@ -13,6 +13,7 @@ contract Marketplace {
     mapping (uint => address) productEscrow;
 
     event NewProduct(uint _productId, string _name, string _category, string _imageLink, string _descLink, uint _price, uint _productCondition);
+    event ProductSold(uint _productId, uint _status);
 
     struct Product {
         uint id;
@@ -42,9 +43,11 @@ contract Marketplace {
         uint _price, 
         string _sellerContact,
         uint _productCondition) public {
+        // Verify
         require(address(0x0) != msg.sender);
         require(_price > 0);
-        productIndex += 1;
+
+        productIndex = SafeMath.add(productIndex, 1);
         Product memory product = Product(
             productIndex, 
             _name, 
@@ -61,6 +64,7 @@ contract Marketplace {
         );
         stores[msg.sender][productIndex] = product;
         productIdInStore[productIndex] = msg.sender;
+
         NewProduct(productIndex, _name, _category, _imageLink, _descLink, _price, _productCondition);
     }
 
@@ -71,13 +75,21 @@ contract Marketplace {
 
     function buy(uint _productId, string _buyerContact) public payable returns (bool) {
         Product storage product = stores[productIdInStore[_productId]][_productId];
+
+        // Verify
         require(msg.value == product.price);
         require(product.status == Status.Unsold);
         require(address(0x0) != msg.sender);
+
         product.status = Status.Sold;
         product.buyerAddr = msg.sender;
         product.buyerContact = _buyerContact;
+
+        // Create escrow contract
         finalize(_productId);
+        
+        // Event
+        ProductSold(_productId, 1);
         return true;
     }
 
@@ -99,6 +111,8 @@ contract Marketplace {
 
     function finalize(uint _productId) private {
         Product memory product = stores[productIdInStore[_productId]][_productId];
+
+        // Verify
         require(product.status == Status.Sold);
         require(address(0x0) != product.buyerAddr);
 

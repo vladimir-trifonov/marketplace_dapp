@@ -4,8 +4,10 @@ const Web3 = require('web3')
 const cors = require('cors')
 const provider = new Web3.providers.HttpProvider('http://localhost:8545')
 const Marketplace = contract(marketplaceArtifacts)
+const helmet = require('helmet')
 Marketplace.setProvider(provider)
 
+// Setup mongo
 const mongoose = require('mongoose')
 mongoose.Promise = global.Promise
 const ProductModel = require('./product')
@@ -15,49 +17,81 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 const express = require('express')
 const app = express()
+const port = process.env.PORT || 3000
 
+app.use(helmet())
 app.use(cors())
 
-app.listen(3000, function () {
-  console.log('Ethereum server listening on port 3000!')
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}!`)
 })
 
-function setupProductEventListner() {
-  let productEvent
-  Marketplace.deployed().then(function (contract) {
-    productEvent = contract.NewProduct({ fromBlock: 0, toBlock: 'latest' })
+function setupProductEventListners() {
+  Marketplace.deployed().then((contract) => {
+    contract.NewProduct({ fromBlock: 0, toBlock: 'latest' })
+      .watch((err, result) => {
+        if (err) {
+          return console.log(err)
+        }
+        saveProduct(result.args)
+      })
 
-    productEvent.watch(function (err, result) {
-      if (err) {
-        console.log(err)
-        return
-      }
-      saveProduct(result.args)
-    })
+    contract.ProductSold({ fromBlock: 0, toBlock: 'latest' })
+      .watch((err, result) => {
+        if (err) {
+          return console.log(err)
+        }
+        updateProduct(result.args)
+      })
   })
 }
 
-setupProductEventListner()
+setupProductEventListners()
 
 function saveProduct(product) {
-  ProductModel.findOne({ 'blockchainId': product._productId.toLocaleString() }, function (err, dbProduct) {
+  ProductModel.findOne({ 'blockchainId': product._productId.toLocaleString() }, (err, dbProduct) => {
+    if (err) {
+      return console.log(err)
+    }
 
     if (dbProduct != null) {
       return
     }
 
-    const product = new ProductModel({
-      name: product._name, blockchainId: product._productId, category: product._category,
-      ipfsImageHash: product._imageLink, ipfsDescHash: product._descLink, price: product._price, condition: product._productCondition,
+    const newProduct = new ProductModel({
+      name: product._name,
+      blockchainId: product._productId,
+      category: product._category,
+      ipfsImageHash: product._imageLink,
+      ipfsDescHash: product._descLink,
+      price: product._price,
+      condition: product._productCondition,
       status: 0
     })
-    product.save(function (err) {
+
+    newProduct.save((err) => {
       if (err) {
-        handleError(err)
-      } else {
-        ProductModel.count({}, function (err, count) {
-          console.log('count is ' + count)
-        })
+        return console.log(err)
+      }
+
+      ProductModel.count({}, (err, count) => {
+        if (err) {
+          return console.error(err)
+        }
+
+        console.log('Products count: ' + count)
+      })
+    })
+  })
+}
+
+function updateProduct(product) {
+  ProductModel.findOne({ blockchainId: product._productId }, (err, updated) => {
+    updated.status = product._status
+
+    updated.save((err) => {
+      if (err) {
+        return console.error(err)
       }
     })
   })
@@ -76,7 +110,11 @@ app.get('/products', function (req, res) {
     }
   }
 
-  ProductModel.find(query, null, {}, function (err, items) {
+  ProductModel.find(query, null, {}, (err, items) => {
+    if (err) {
+      return console.log(err)
+    }
+
     res.send(items)
   })
 })
