@@ -22,6 +22,8 @@ contract Marketplace {
         string imageLink;
         string descLink;
         uint price;
+        uint value;
+        uint commision;
         Status status;
         address sellerAddr;
         string sellerContact;
@@ -42,12 +44,14 @@ contract Marketplace {
         string _descLink, 
         uint _price, 
         string _sellerContact,
-        uint _productCondition) public {
+        uint _productCondition,
+        uint _value,
+        uint _commision) public {
         // Verify
         require(address(0x0) != msg.sender);
         require(_price > 0);
 
-        productIndex = SafeMath.add(productIndex, 1);
+        productIndex += 1;
         Product memory product = Product(
             productIndex, 
             _name, 
@@ -55,6 +59,8 @@ contract Marketplace {
             _imageLink, 
             _descLink, 
             _price, 
+            _value,
+            _commision,
             Status.Unsold, 
             msg.sender, 
             _sellerContact,
@@ -78,6 +84,7 @@ contract Marketplace {
 
         // Verify
         require(msg.value == product.price);
+        require(msg.value == SafeMath.add(product.value, product.commision));
         require(product.status == Status.Unsold);
         require(address(0x0) != msg.sender);
 
@@ -116,7 +123,7 @@ contract Marketplace {
         require(product.status == Status.Sold);
         require(address(0x0) != product.buyerAddr);
 
-        Escrow escrow = (new Escrow).value(product.price)(_productId, product.buyerAddr, productIdInStore[_productId], owner);
+        Escrow escrow = (new Escrow).value(product.price)(_productId, product.buyerAddr, productIdInStore[_productId], owner, product.value, product.commision);
         productEscrow[_productId] = address(escrow);
     }
 }

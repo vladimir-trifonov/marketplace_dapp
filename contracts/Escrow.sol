@@ -1,11 +1,14 @@
 pragma solidity ^0.4.18;
+import "./SafeMath.sol";
+
 
 contract Escrow {
     uint public productId;
     address public buyer;
     address public seller;
     address public arbiter;
-    uint public amount;
+    uint public value;
+    uint public commision;
     bool public fundsDisbursed;
     mapping (address => bool) releaseAmount;
     uint public releaseCount;
@@ -16,13 +19,15 @@ contract Escrow {
     event UnlockAmount(uint _productId, string _operation, address _operator);
     event DisburseAmount(uint _productId, uint _amount, address _beneficiary);
 
-    function Escrow(uint _productId, address _buyer, address _seller, address _arbiter) payable public {
+    function Escrow(uint _productId, address _buyer, address _seller, address _arbiter, uint _value, uint _commision) payable public {
         productId = _productId;
         buyer = _buyer;
         seller = _seller;
         arbiter = _arbiter;
-        amount = msg.value;
         fundsDisbursed = false;
+        commision = _commision;
+        value = _value;
+
         CreateEscrow(_productId, _buyer, _seller, _arbiter);
     }
 
@@ -39,9 +44,9 @@ contract Escrow {
         }
 
         if (releaseCount == 2) {
-            seller.transfer(amount);
+            seller.transfer(value);
             fundsDisbursed = true;
-            DisburseAmount(productId, amount, seller);
+            DisburseAmount(productId, value, seller);
         }
     }
 
@@ -54,9 +59,9 @@ contract Escrow {
         }
 
         if (refundCount == 2) {
-            buyer.transfer(amount);
+            buyer.transfer(SafeMath.add(value, commision));
             fundsDisbursed = true;
-            DisburseAmount(productId, amount, buyer);
+            DisburseAmount(productId, value, buyer);
         }
     }
 }

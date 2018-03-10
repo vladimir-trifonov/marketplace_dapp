@@ -86,8 +86,8 @@ function saveProduct(product) {
 }
 
 function updateProduct(product) {
-  ProductModel.findOne({ blockchainId: product._productId }, (err, updated) => {
-    updated.status = product._status
+  ProductModel.findOne({ blockchainId: product._productId.toLocaleString() }, (err, updated) => {
+    updated.status = product._status.toNumber()
 
     updated.save((err) => {
       if (err) {
@@ -98,7 +98,7 @@ function updateProduct(product) {
 }
 
 app.get('/products', function (req, res) {
-  const query = { status: { $eq: 0 } }
+  const query = { }
 
   if (req.query.category !== undefined) {
     query['category'] = { $eq: req.query.category }

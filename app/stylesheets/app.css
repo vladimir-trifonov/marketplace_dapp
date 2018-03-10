@@ -352,3 +352,7 @@ div.section>div>input {
 		padding-left: 0;
 	}
 }
+
+.sold{
+  background-image: url("/sold.png")
+}

@@ -27,15 +27,13 @@
         <li class="nav-item">
           <a class="nav-link" href="/list-item.html">Sell Product</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/product-sold-list.html">Past Sales</a>
-        </li>
       </ul>
     </div>
   </nav>
   <br/>
 
   <div class="container" id="product-details">
+    <div style="display: none;" class="alert alert-success" id="msg"></div>
     <div class="row">
       <div class="col-md-2">
       </div>
@@ -55,10 +53,10 @@
             <input type="hidden" name="product-id" id="product-id" />
             <input type="hidden" class="form-control" name="amount" id="amount" required="required">
             <h6 class="title-price">
-              <small>Deliver to</small>
+              <small>Contact</small>
             </h6>
             <input style="margin-top:5px;margin-bottom: 5px;" type="text" name="buyer-contact" class="form-control" id="buyer-contact"
-              placeholder="Address" required="required"></input>
+              placeholder="Delivery Information" required="required"></input>
 
             <button class="btn btn-success btn-buy" type="submit">
               <span aria-hidden="true"></span>Buy</button>

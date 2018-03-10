@@ -13,7 +13,7 @@ module.exports = {
       { from: './app/index.html', to: "index.html" },
       { from: './app/list-item.html', to: "list-item.html" },
       { from: './app/product.html', to: "product.html" },
-      { from: './app/product-sold-list.html', to: "product-sold-list.html" }
+      { from: './app/resources/sold.png', to: "sold.png" }
     ])
   ],
   module: {

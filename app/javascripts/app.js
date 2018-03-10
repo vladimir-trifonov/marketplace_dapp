@@ -51,7 +51,11 @@ let App = window.App = {
       Marketplace.deployed().then(function (contract) {
         contract.buy(parseInt(productId), buyerContact, { value: amount, from: web3.eth.accounts[0], gas: 1000000 }).then(
           function (f) {
-            location.reload()
+            $('#msg').show()
+            $('#msg').html('Your successfully bought this product!')
+            setTimeout(() => {
+              location.reload()
+            }, 1000)
           }
         )
       })
@@ -64,9 +68,7 @@ let App = window.App = {
         $('#msg').html('Your transaction has been submitted. Please wait for few seconds for the confirmation').show()
         f.releaseAmountToSeller(productId, { from: web3.eth.accounts[0], gas: 100000 }).then(function (f) {
           location.reload()
-        }).catch(function (e) {
-          console.log(e)
-        })
+        }).catch(alert)
       })
     })
 
@@ -78,7 +80,7 @@ let App = window.App = {
         f.refundAmountToBuyer(productId, { from: web3.eth.accounts[0], gas: 100000 }).then(function (f) {
           location.reload()
         }).catch(function (e) {
-          console.log(e)
+          alert(e)
         })
       })
 
@@ -129,11 +131,7 @@ function renderProducts(div, filters) {
 
 function renderStore() {
   if ($('#product-list').length > 0) {
-    renderProducts('product-list', { status: 'Unsold' })
-  }
-
-  if ($('#product-sold-list').length > 0) {
-    renderProducts('product-sold-list', { status: 'Sold' })
+    renderProducts('product-list')
   }
 }
 
@@ -146,7 +144,7 @@ function buildProduct(product) {
     
     <div class="bottom">
       <div class="heading">${product.name}</div>
-      <div class="price">${displayPrice(product.price)}</div>
+      ${product.status ? '<h3 style="color: red;">SOLD</h3>' : `<div class="price">${displayPrice(product.price)}</div>`}
     </div>
   </a>
 </div>`)
@@ -161,7 +159,7 @@ function saveImageOnIpfs(reader) {
         console.log(response)
         resolve(response[0].hash)
       }).catch((err) => {
-        console.error(err)
+        alert(err)
         reject(err)
       })
   })
@@ -175,7 +173,7 @@ function saveTextBlobOnIpfs(blob) {
         console.log(response)
         resolve(response[0].hash)
       }).catch((err) => {
-        console.error(err)
+        alert(err)
         reject(err)
       })
   })
@@ -194,12 +192,26 @@ function saveProduct(reader, decodedParams) {
 
 function saveProductToBlockchain(params, imageId, descId) {
   Marketplace.deployed().then(function (contract) {
-    contract.addProductToStore(params['product-name'], params['product-category'], imageId, descId, web3.toWei(params['product-price'], 'ether'), params['seller-contacts'], parseInt(params['product-condition']), { from: web3.eth.accounts[0], gas: 600000 }).then(function (f) {
-      $('#msg').show()
-      $('#msg').html('Your product was successfully added to your store!')
-      document.getElementById('add-item-to-store').reset()
-    })
-  })
+    const price = parseInt(web3.toWei(params['product-price'], 'ether'))
+    const value = (price * 95) / 100
+    const commision = (price * 5) / 100
+    contract.addProductToStore(
+      params['product-name'],
+      params['product-category'],
+      imageId,
+      descId,
+      price + '',
+      params['seller-contacts'],
+      parseInt(params['product-condition']),
+      value + '',
+      commision + '',
+      { from: web3.eth.accounts[0], gas: 1000000 }).then(function (f) {
+        $('#msg').show()
+        $('#msg').html('Your product was successfully added to your store!')
+        document.getElementById('add-item-to-store').reset()
+        window.location.href = '/'
+      }).catch(alert)
+  }).catch(alert)
 }
 
 function renderProductDetails(productId) {
@@ -210,6 +222,7 @@ function renderProductDetails(productId) {
         content = file.toString()
         $('#product-desc').append('<div>' + content + '</div>')
       })
+        .catch(alert)
 
       $('.item-photo').append("<img src='https://ipfs.io/ipfs/" + product[3] + "' width='250px' />")
       $('#product-price').html(displayPrice(product[5]))
@@ -229,7 +242,7 @@ function renderProductDetails(productId) {
             $('#sold').show()
             $('#finalized').hide()
           }
-        })
+        }).catch(alert)
       } else {
         // Unsold
         $('#sold').hide()
@@ -237,6 +250,7 @@ function renderProductDetails(productId) {
         $('#finalized').hide()
       }
     })
+      .catch(alert)
   })
 }
 
