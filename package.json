@@ -5,11 +5,13 @@
   "scripts": {
     "lint": "eslint ./",
     "build": "webpack",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "api": "node ./server/app/js"
   },
   "author": "Douglas von Kohorn",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "ethereumjs-util": "^5.1.5",
     "express": "^4.16.2",
