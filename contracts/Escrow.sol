@@ -45,6 +45,7 @@ contract Escrow {
 
         if (releaseCount == 2) {
             seller.transfer(value);
+            arbiter.transfer(commision);
             fundsDisbursed = true;
             DisburseAmount(productId, value, seller);
         }
