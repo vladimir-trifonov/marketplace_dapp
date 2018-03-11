@@ -36,9 +36,7 @@ const onBuyProduct = function (event) {
       function (f) {
         $('#msg').show()
         $('#msg').html('Your successfully bought this product!')
-        setTimeout(() => {
-          location.reload()
-        }, 1000)
+        window.location.href = '/'
       }
     )
   })
@@ -212,7 +210,6 @@ function renderProductDetails(productId) {
   Marketplace.deployed().then(function (contract) {
     contract.getProduct.call(productId).then(function (product) {
       let content = ''
-      // TODO
       ipfsCat(product[4]).then(function (file) {
         content = file.toString()
         $('#product-desc').append('<div>' + content + '</div>')
